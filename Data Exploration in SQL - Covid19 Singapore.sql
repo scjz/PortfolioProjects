@@ -6,6 +6,7 @@ FROM PortfolioProject..CovidDeaths
 WHERE location = 'Singapore'
 ORDER BY date
 
+------------------------------------------------------------------------------------
 -- Percentage of population infected
 SELECT date, location, population, total_cases, new_cases, total_deaths, new_deaths,
 	(total_cases/population)*100 AS PercentInfected
@@ -13,6 +14,7 @@ FROM PortfolioProject..CovidDeaths
 WHERE location = 'Singapore'
 ORDER BY date
 
+------------------------------------------------------------------------------------
 -- Percentage of fatal covid cases
 SELECT date, location, population, total_cases, new_cases, total_deaths, new_deaths,
 	(total_cases/population)*100 AS PercentInfected,
@@ -21,6 +23,7 @@ FROM PortfolioProject..CovidDeaths
 WHERE location = 'Singapore'
 ORDER BY date
 
+------------------------------------------------------------------------------------
 -- Months with the highest infection rate
 SELECT 
 	MONTH(date) AS MonthOnly,
@@ -33,6 +36,7 @@ GROUP BY MONTH(date), YEAR(date)
 ORDER BY monthly_cases DESC
 -- Month of October 21 has the highest infection and death rate
 
+------------------------------------------------------------------------------------
 SELECT *
 FROM PortfolioProject..CovidVaccinations
 WHERE location = 'Singapore'
@@ -49,6 +53,7 @@ dea.date = vac.date
 WHERE dea.location = 'Singapore'
 ORDER BY date
 
+------------------------------------------------------------------------------------
 -- Percentage vaccinated
 -- Using CTE
 
@@ -68,6 +73,7 @@ SELECT *,
 	(CumulativeVaccinated/population)*100 AS PercentVaccinated
 FROM CTE_vaccination
 
+------------------------------------------------------------------------------------
 -- Save as VIEW
 DROP VIEW IF EXISTS SingaporeCovid
 
